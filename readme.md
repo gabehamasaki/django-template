@@ -1,96 +1,99 @@
 # Django Template by Hamasakis
 
-Este repositório contém um template robusto e configurado para iniciar novos projetos Django rapidamente. Desenvolvido por Hamasakis, este boilerplate integra as melhores práticas e ferramentas essenciais para aplicações modernas, focando em escalabilidade e facilidade de desenvolvimento.
+This repository contains a robust and configured template to kickstart new Django projects quickly. Developed by Hamasakis, this boilerplate integrates best practices and essential tools for modern applications, focusing on scalability and ease of development.
 
-## 🚀 Funcionalidades e Tecnologias
+## 🚀 Features and Technologies
 
-Este template vem pré-configurado com uma stack poderosa:
+This template comes pre-configured with a powerful stack:
 
-- **Backend Framework**: [Django](https://www.djangoproject.com/) (v5.2+) - O framework web para perfeccionistas com prazos.
-- **REST API**: [Django REST Framework](https://www.django-rest-framework.org/) - Toolkit poderoso e flexível para construir Web APIs.
-- **Task Queue & Async**: [Celery](https://docs.celeryq.dev/) - Fila de tarefas distribuída assíncrona.
-- **Scheduling**: [Django Celery Beat](https://django-celery-beat.readthedocs.io/) - Agendamento de tarefas periódicas.
-- **Database**: [PostgreSQL](https://www.postgresql.org/) - Banco de dados relacional open source avançado.
-- **Caching & Broker**: [Redis](https://redis.io/) - Armazenamento de estrutura de dados em memória, usado como banco de dados, cache e message broker.
-- **Admin Interface**: [Django Jazzmin](https://github.com/farridav/django-jazzmin) - Tema administrativo moderno e customizável para o Django Admin.
-- **Containerization**: [Docker](https://www.docker.com/) & Docker Compose - Ambiente de desenvolvimento isolado e replicável.
+- **Backend Framework**: [Django](https://www.djangoproject.com/) (v5.2+) - The web framework for perfectionists with deadlines.
+- **REST API**: [Django REST Framework](https://www.django-rest-framework.org/) - Powerful and flexible toolkit for building Web APIs.
+- **Task Queue & Async**: [Celery](https://docs.celeryq.dev/) - Distributed asynchronous task queue.
+- **Scheduling**: [Django Celery Beat](https://django-celery-beat.readthedocs.io/) - Periodic task scheduling.
+- **Database**: [PostgreSQL](https://www.postgresql.org/) - Advanced open source relational database.
+- **Message Broker**: [RabbitMQ](https://www.rabbitmq.com/) - Robust and scalable open source message broker for Celery.
+- **Caching**: [Redis](https://redis.io/) - In-memory data structure store, used for caching.
+- **Admin Interface**: [Django Jazzmin](https://github.com/farridav/django-jazzmin) - Modern and customizable admin theme for Django Admin.
+- **Containerization**: [Docker](https://www.docker.com/) & Docker Compose - Isolated and reproducible development environment.
 
-## 📋 Pré-requisitos
+## 📋 Prerequisites
 
-Certifique-se de ter instalado em sua máquina:
+Ensure you have the following installed on your machine:
 
 - [Python 3.10+](https://www.python.org/)
 - [Docker](https://docs.docker.com/get-docker/) & Docker Compose
 - [Git](https://git-scm.com/)
 
-## 🛠️ Instalação e Configuração
+## 🛠️ Installation and Setup
 
-Siga os passos abaixo para levantar o ambiente de desenvolvimento:
+Follow the steps below to set up the development environment:
 
-### 1. Clone o repositório
+### 1. Clone the repository
 
 ```bash
-git clone <https://github.com/gabehamasaki/django-template>
-cd <nome-do-diretorio>
+git clone <repository-url>
+cd <directory-name>
 ```
 
-### 2. Configure o Ambiente Virtual
+### 2. Configure the Virtual Environment
 
-É recomendado usar um ambiente virtual para isolar as dependências do projeto.
+It is recommended to use a virtual environment to isolate project dependencies.
 
 ```bash
 python -m venv venv
-# No Linux/Mac:
+# On Linux/Mac:
 source venv/bin/activate
-# No Windows:
+# On Windows:
 .\venv\Scripts\activate
 ```
 
-### 3. Instale as Dependências
+### 3. Install Dependencies
 
 ```bash
-pip install -r requirements.txt
+pip install -r requiriments.txt
 ```
 
-### 4. Inicialize os Serviços (Docker)
+> **Note**: The requirements file is named `requiriments.txt`.
 
-Utilize o Docker Compose para subir os serviços de infraestrutura (PostgreSQL, Redis, etc.).
+### 4. Initialize Services (Docker)
+
+Use Docker Compose to start the infrastructure services (PostgreSQL, Redis, RabbitMQ, etc.).
 
 ```bash
 docker-compose up -d
 ```
 
-### 5. Aplique as Migrations
+### 5. Apply Migrations
 
-Configure o banco de dados inicial:
+Set up the initial database:
 
 ```bash
 python manage.py migrate
 ```
 
-### 6. Crie um Superusuário
+### 6. Create a Superuser
 
-Para acessar o painel administrativo:
+To access the admin panel:
 
 ```bash
 python manage.py createsuperuser
 ```
 
-## ▶️ Executando o Projeto
+## ▶️ Running the Project
 
-### Servidor de Desenvolvimento
+### Development Server
 
-Para rodar a aplicação Django:
+To run the Django application:
 
 ```bash
 python manage.py runserver
 ```
 
-Acesse em: `http://localhost:8000`
+Access at: `http://localhost:8000`
 
 ### Celery Worker
 
-Para processar tarefas em background:
+To process background tasks:
 
 ```bash
 celery -A core worker -l info
@@ -98,33 +101,33 @@ celery -A core worker -l info
 
 ### Celery Beat
 
-Para agendamento de tarefas periódicas:
+For periodic task scheduling:
 
 ```bash
 celery -A core beat -l info
 ```
 
-## 📂 Estrutura do Projeto
+## 📂 Project Structure
 
 ```plaintext
 .
-├── core/                # Configurações principais do projeto (settings, urls, celery, wsgi/asgi)
-├── docker-compose.yml   # Orquestração dos containers (Postgres, etc.)
-├── manage.py            # Utilitário de linha de comando do Django
-├── requiriments.txt     # Dependências do projeto Python
-└── readme.md            # Documentação do projeto
+├── core/                # Main project settings (settings, urls, celery, wsgi/asgi)
+├── docker-compose.yml   # Container orchestration (Postgres, RabbitMQ, etc.)
+├── manage.py            # Django command-line utility
+├── requiriments.txt     # Python project dependencies
+└── readme.md            # Project documentation
 ```
 
-## ⚙️ Configurações Importantes
+## ⚙️ Important Configurations
 
-- **Settings**: As configurações principais estão em `core/settings.py`.
-- **Database**: Configurado para conectar ao PostgreSQL rodando no Docker.
-- **Celery**: Configurado em `core/celery.py` com Redis como broker.
-- **Jazzmin**: A interface admin já vem com o tema Jazzmin aplicado.
+- **Settings**: Main settings are located in `core/settings.py`.
+- **Database**: Configured to connect to PostgreSQL running in Docker.
+- **Celery**: Configured in `core/celery.py` using RabbitMQ as the broker.
+- **Jazzmin**: The admin interface already has the Jazzmin theme applied.
 
-## 🤝 Contribuição
+## 🤝 Contribution
 
-Sinta-se à vontade para fazer um fork deste template e adaptá-lo às suas necessidades. Pull requests são bem-vindos.
+Feel free to fork this template and adapt it to your needs. Pull requests are welcome.
 
 ---
-Desenvolvido por **Hamasakis**.
+Developed by **Hamasakis**.
